@@ -1,0 +1,35 @@
+{
+  "_note": "Hand-picked pieces for the homepage. Use 1stDibs ids (the f_… number in a listing URL). Sold or missing pieces are skipped and the site falls back to its own choice.",
+  "salon": [
+    "f_51613092",
+    "f_39529132",
+    "f_49916772",
+    "f_48690472",
+    "f_44636362"
+  ],
+  "reel": [
+    "f_52130972",
+    "f_42886742",
+    "f_33318382",
+    "f_39121582",
+    "f_27874022",
+    "f_33080592",
+    "f_45600592",
+    "f_41792462",
+    "f_33498862",
+    "f_44431442",
+    "f_15573051",
+    "f_49361612"
+  ],
+  "rooms": {
+    "lighting": "f_52130972",
+    "clocks": "f_6149343"
+  },
+  "eras": {
+    "pre1850": "f_31171362",
+    "1850": "f_6149343",
+    "1900": "f_42343882",
+    "1940": "f_35239772",
+    "1970": "f_45626332"
+  }
+}

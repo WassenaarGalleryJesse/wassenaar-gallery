@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wassenaar Gallery · Antique lighting, furniture &amp; curiosities</title>
+  <meta name="description" content="Antique and vintage lighting, furniture and curiosities from Wassenaar Gallery in Lisse, the Netherlands. Browse the collection here; every piece is sold through 1stDibs with worldwide delivery included.">
+  <link rel="canonical" href="https://wassenaargallery.com/">
+  <meta name="theme-color" content="#ece7de">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wassenaar Gallery">
+  <meta property="og:title" content="Wassenaar Gallery · Antique lighting, furniture & curiosities">
+  <meta property="og:description" content="Antique lighting, furniture and curiosities from Lisse, the Netherlands. Every piece is sold through 1stDibs.">
+  <meta property="og:url" content="https://wassenaargallery.com/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="data/listings.json" as="fetch" crossorigin>
+  <link rel="preconnect" href="https://a.1stdibscdn.com">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="module" src="assets/app.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Wassenaar Gallery",
+    "legalName": "Handelshuis Wassenaar B.V.",
+    "url": "https://wassenaargallery.com/",
+    "email": "info@wassenaargallery.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Lisse", "postalCode": "2161 LE", "addressCountry": "NL" },
+    "sameAs": ["https://www.1stdibs.com/dealers/handelshuis-wassenaar/"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#collection">Skip to the collection</a>
+
+  <header class="masthead" data-masthead>
+    <div class="masthead__inner">
+      <a class="wordmark" href="#top" aria-label="Wassenaar Gallery, back to top">
+        <span class="wordmark__name">Wassenaar</span>
+        <span class="wordmark__sub">Gallery</span>
+      </a>
+      <nav class="masthead__nav" aria-label="Main" data-menu>
+        <a href="#collection">Collection</a>
+        <a href="#categories">Categories</a>
+        <a href="#eras">Eras</a>
+        <a href="#buying">Buying</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="masthead__tools">
+        <div class="currency" role="group" aria-label="Show prices in">
+          <button type="button" data-currency="EUR" aria-pressed="true">€</button>
+          <button type="button" data-currency="USD" aria-pressed="false">$</button>
+          <button type="button" data-currency="GBP" aria-pressed="false">£</button>
+        </div>
+        <button type="button" class="shortlist-toggle" data-open-shortlist>
+          Shortlist <span class="shortlist-toggle__count" data-shortlist-count>0</span>
+        </button>
+        <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">Menu</button>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Main" hidden>
+      <a href="#collection">Collection</a>
+      <a href="#categories">Categories</a>
+      <a href="#eras">Eras</a>
+      <a href="#buying">Buying</a>
+      <a href="#about">About</a>
+      <a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">1stDibs shop ↗</a>
+      <div class="mobile-menu__currency">
+        <span>Prices in</span>
+        <div class="currency" role="group" aria-label="Show prices in">
+          <button type="button" data-currency="EUR" aria-pressed="true">€</button>
+          <button type="button" data-currency="USD" aria-pressed="false">$</button>
+          <button type="button" data-currency="GBP" aria-pressed="false">£</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Opening: plain statement on the left, a small salon hang of pieces on the right -->
+    <section class="hero">
+      <div class="hero__text">
+        <p class="eyebrow" data-reveal>Lisse, Holland · Worldwide delivery included</p>
+        <h1 class="hero__title" data-reveal>Antique lighting, furniture <em>&amp; curious&nbsp;things</em></h1>
+        <p class="hero__lede" data-reveal>
+          Pieces made between the eighteenth century and the 1970s, each one chosen for its
+          workmanship and character. Take your time looking around. When something is right, you
+          buy it through our shop on 1stDibs, with delivery to your door included in the price.
+        </p>
+        <p class="hero__actions" data-reveal>
+          <a class="button" href="#collection">Browse the collection</a>
+          <a class="link-out" href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">Our 1stDibs shop</a>
+        </p>
+      </div>
+      <div class="salon" data-salon aria-label="A few pieces from the collection"></div>
+    </section>
+
+    <!-- Categories as a typographic index; on hover a picture follows the pointer -->
+    <section class="rooms" id="categories" aria-labelledby="rooms-title">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Index</p>
+        <h2 id="rooms-title">By category</h2>
+      </header>
+      <ol class="rooms__list" data-rooms></ol>
+      <div class="rooms__peek" data-rooms-peek aria-hidden="true"><img alt="" decoding="async"></div>
+    </section>
+
+    <!-- Lighting is more than half the collection: give it its own dark room -->
+    <section class="lightroom" id="lighting" aria-labelledby="lightroom-title">
+      <div class="lightroom__intro" data-reveal>
+        <p class="eyebrow">The lighting room</p>
+        <h2 id="lightroom-title">More than half of what we have <em>gives&nbsp;light</em></h2>
+        <p>
+          Alabaster bowls, bronze chandeliers, hammered Arts &amp; Crafts lanterns, Murano flush mounts
+          and wall lights by the pair.
+        </p>
+        <a class="link-arrow" href="?category=lighting#collection" data-set-filter="category=lighting">See all lighting</a>
+      </div>
+      <div class="reel" data-reel>
+        <div class="reel__track" data-reel-track tabindex="0" aria-label="Lighting, scroll sideways"></div>
+        <div class="reel__controls">
+          <button type="button" data-reel-prev aria-label="Previous lights">←</button>
+          <button type="button" data-reel-next aria-label="Next lights">→</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Eras: one object per period standing on a shelf -->
+    <section class="eras" id="eras" aria-labelledby="eras-title">
+      <header class="section-head" data-reveal>
+        <p class="eyebrow">Two centuries</p>
+        <h2 id="eras-title">By era</h2>
+      </header>
+      <ol class="shelf" data-shelf></ol>
+    </section>
+
+    <!-- The collection itself -->
+    <section class="collection" id="collection" aria-labelledby="collection-title">
+      <header class="collection__head">
+        <h2 id="collection-title">The collection</h2>
+        <p class="collection__count" data-result-count aria-live="polite"></p>
+      </header>
+
+      <div class="toolbar" data-toolbar>
+        <div class="toolbar__rooms" data-room-tabs role="group" aria-label="Category"></div>
+        <div class="toolbar__tools">
+          <label class="search">
+            <span class="visually-hidden">Search the collection</span>
+            <input type="search" data-search placeholder="Search: alabaster, Amsterdam School, pair…" autocomplete="off" spellcheck="false">
+          </label>
+          <button type="button" class="filters-toggle" data-refine-toggle aria-expanded="false" aria-controls="refine">
+            <span data-refine-label>Show filters</span><span class="tool__badge" data-refine-count hidden></span>
+          </button>
+          <label class="tool tool--select">
+            <span class="visually-hidden">Sort</span>
+            <select data-sort>
+              <option value="recent">Recently listed</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="oldest">Oldest first</option>
+            </select>
+          </label>
+          <div class="view-toggle" role="group" aria-label="View">
+            <button type="button" data-view="plates" aria-pressed="true">Plates</button>
+            <button type="button" data-view="index" aria-pressed="false">Index</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters: open by default on larger screens, one quiet row per facet -->
+      <div class="refine" id="refine" data-refine hidden>
+        <div class="refine__row">
+          <h3>Era</h3>
+          <div class="era-strip" data-era-strip role="group" aria-label="Era"></div>
+        </div>
+        <div class="refine__row">
+          <h3>Style</h3>
+          <div class="options" data-style-chips role="group" aria-label="Style"></div>
+        </div>
+        <div class="refine__row">
+          <h3>Origin</h3>
+          <div class="options" data-origin-chips role="group" aria-label="Origin"></div>
+        </div>
+        <div class="refine__row">
+          <h3>Price</h3>
+          <div class="options" data-price-chips role="group" aria-label="Price"></div>
+        </div>
+      </div>
+
+      <div class="active" data-active-filters></div>
+      <div class="shared-note" data-shared-note hidden></div>
+
+      <div class="grid" data-grid data-view="plates"></div>
+      <p class="empty" data-empty hidden>
+        Nothing in the collection matches that. Try fewer filters, or
+        <button type="button" class="text-button" data-clear-all>start again</button>.
+      </p>
+      <div class="more" data-more-wrap hidden>
+        <button type="button" class="button button--quiet" data-more>Show more</button>
+      </div>
+      <noscript>
+        <p class="noscript">The collection needs JavaScript to browse here. You can see every piece in
+          <a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/shop/">our 1stDibs shop</a>.</p>
+      </noscript>
+    </section>
+
+    <!-- Buying, written like the conditions of sale in an old auction catalogue -->
+    <section class="buying" id="buying" aria-labelledby="buying-title">
+      <div class="buying__lead" data-reveal>
+        <p class="eyebrow">Buying</p>
+        <h2 id="buying-title">Every piece is sold through <em>1stDibs</em></h2>
+        <p>
+          This site is where you look around. When you've found something, the button on each
+          piece takes you to its page on 1stDibs. There you can buy it, make an offer or send us a
+          question.
+        </p>
+      </div>
+      <ol class="conditions" data-reveal>
+        <li>
+          <h3>Payment &amp; protection</h3>
+          <p>Checkout and payment happen securely on 1stDibs, and every purchase is covered by their buyer protection.</p>
+        </li>
+        <li>
+          <h3>Delivery included</h3>
+          <p>Every price includes delivery. We pack each piece ourselves in Lisse and send it to your door, anywhere in the world, at no extra cost.</p>
+        </li>
+        <li>
+          <h3>Questions &amp; offers</h3>
+          <p>Use “Message seller” or “Make offer” on the 1stDibs page. Your message comes straight to us.</p>
+        </li>
+        <li>
+          <h3>Condition</h3>
+          <p>Everything here is old and has been used. Each listing describes its condition. If you want more photos or measurements, just ask.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- About, with a colophon instead of marketing numbers -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <figure class="about__figure" data-reveal>
+        <img src="assets/img/about.jpg" width="1000" height="667" loading="lazy" decoding="async"
+             alt="A bronze eagle on an oak pedestal, a glass-fronted cabinet, a bronze bust and alabaster pendant lights in a pale room">
+      </figure>
+      <div class="about__text" data-reveal>
+        <p class="eyebrow">About</p>
+        <h2 id="about-title">Wassenaar Gallery</h2>
+        <p>
+          We have been buying and selling antiques for over twenty years, from Lisse, in the bulb
+          country between Haarlem and Leiden. Since 2016 we have sold through 1stDibs to buyers all
+          over the world.
+        </p>
+        <p>
+          What we look for is simple to say and hard to find: pieces made by good craftsmen of
+          their time, in good condition and with lots of character left in them.
+        </p>
+        <dl class="colophon">
+          <div><dt>Based in</dt><dd>Lisse, the Netherlands</dd></div>
+          <div><dt>On 1stDibs</dt><dd>Since 2016</dd></div>
+          <div><dt>Delivery</dt><dd>Included, worldwide</dd></div>
+          <div><dt>Collection updated</dt><dd data-updated>–</dd></div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__mark">Wassenaar <em>Gallery</em></p>
+      <div class="footer__cols">
+        <div>
+          <h2>Visit online</h2>
+          <p><a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">Our shop on 1stDibs ↗</a></p>
+        </div>
+        <div>
+          <h2>Write to us</h2>
+          <p><a href="mailto:info@wassenaargallery.com">info@wassenaargallery.com</a></p>
+        </div>
+        <div>
+          <h2>Where</h2>
+          <p>2161 LE Lisse<br>the Netherlands</p>
+        </div>
+      </div>
+      <p class="footer__small">
+        Prices and availability come from 1stDibs and are checked daily; the 1stDibs page is always leading.
+        © <span data-year>2026</span> Handelshuis Wassenaar B.V.
+      </p>
+    </div>
+  </footer>
+
+  <!-- One piece, opened from anywhere on the page. URL: #piece=f_123 -->
+  <dialog class="piece" data-piece aria-labelledby="piece-title">
+    <div class="piece__frame">
+      <div class="piece__bar">
+        <p class="piece__position" data-piece-position></p>
+        <div class="piece__bar-tools">
+          <button type="button" class="icon-button" data-piece-prev aria-label="Previous piece">←</button>
+          <button type="button" class="icon-button" data-piece-next aria-label="Next piece">→</button>
+          <button type="button" class="icon-button icon-button--close" data-piece-close aria-label="Close">Close</button>
+        </div>
+      </div>
+      <div class="piece__layout">
+        <div class="piece__media">
+          <figure class="piece__plate" data-piece-plate>
+            <img data-piece-img alt="">
+          </figure>
+          <div class="piece__thumbs" data-piece-thumbs></div>
+        </div>
+        <div class="piece__body">
+          <p class="eyebrow" data-piece-kicker></p>
+          <h2 class="piece__title" id="piece-title" data-piece-title></h2>
+          <p class="piece__subtitle" data-piece-subtitle></p>
+          <p class="piece__price" data-piece-price></p>
+          <div class="piece__actions">
+            <a class="button button--solid" data-piece-link target="_blank" rel="noopener">View &amp; buy on 1stDibs</a>
+            <button type="button" class="button button--quiet" data-piece-keep aria-pressed="false">Keep on shortlist</button>
+          </div>
+          <p class="piece__hint">Make an offer or ask us a question on the same page.</p>
+          <dl class="facts" data-piece-facts></dl>
+          <div class="piece__excerpt" data-piece-excerpt></div>
+        </div>
+      </div>
+      <section class="piece__related" aria-labelledby="related-title">
+        <h3 id="related-title" data-related-title>More like this</h3>
+        <div class="related" data-related></div>
+      </section>
+    </div>
+  </dialog>
+
+  <!-- Shortlist: kept on this device, shareable as a link -->
+  <dialog class="drawer" data-shortlist aria-labelledby="shortlist-title">
+    <div class="drawer__frame">
+      <header class="drawer__head">
+        <h2 id="shortlist-title">Shortlist</h2>
+        <button type="button" class="icon-button icon-button--close" data-shortlist-close aria-label="Close shortlist">Close</button>
+      </header>
+      <p class="drawer__intro" data-shortlist-empty>
+        Nothing kept yet. Use “Keep” on any piece to collect a few, then send the list to a client, a partner or yourself.
+      </p>
+      <ol class="drawer__list" data-shortlist-items></ol>
+      <footer class="drawer__foot" data-shortlist-foot hidden>
+        <button type="button" class="button button--solid" data-shortlist-share>Copy link to this list</button>
+        <a class="button button--quiet" data-shortlist-mail href="#">Email the list</a>
+        <p class="drawer__status" data-shortlist-status aria-live="polite"></p>
+      </footer>
+    </div>
+  </dialog>
+</body>
+</html>
