@@ -12,6 +12,11 @@
   <meta property="og:title" content="Wassenaar Gallery · Antique lighting, furniture & curiosities">
   <meta property="og:description" content="Antique lighting, furniture and curiosities from Lisse, the Netherlands. Every piece is sold through 1stDibs.">
   <meta property="og:url" content="https://wassenaargallery.com/">
+  <meta property="og:image" content="https://wassenaargallery.com/assets/img/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wassenaar Gallery: antique lighting, furniture and curious things from Lisse, Holland">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,13 +32,26 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Store",
-    "name": "Wassenaar Gallery",
-    "legalName": "Handelshuis Wassenaar B.V.",
-    "url": "https://wassenaargallery.com/",
-    "email": "info@wassenaargallery.com",
-    "address": { "@type": "PostalAddress", "addressLocality": "Lisse", "postalCode": "2161 LE", "addressCountry": "NL" },
-    "sameAs": ["https://www.1stdibs.com/dealers/handelshuis-wassenaar/"]
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://wassenaargallery.com/#website",
+        "name": "Wassenaar Gallery",
+        "alternateName": "WassenaarGallery",
+        "url": "https://wassenaargallery.com/"
+      },
+      {
+        "@type": "Store",
+        "@id": "https://wassenaargallery.com/#store",
+        "name": "Wassenaar Gallery",
+        "legalName": "Handelshuis Wassenaar B.V.",
+        "url": "https://wassenaargallery.com/",
+        "image": "https://wassenaargallery.com/assets/img/share.jpg",
+        "email": "info@wassenaargallery.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Lisse", "postalCode": "2161 LE", "addressCountry": "NL" },
+        "sameAs": ["https://www.1stdibs.com/dealers/handelshuis-wassenaar/"]
+      }
+    ]
   }
   </script>
 </head>
