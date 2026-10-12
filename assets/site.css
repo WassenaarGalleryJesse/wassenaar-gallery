@@ -748,10 +748,10 @@ p {
   text-decoration: none;
   color: inherit;
 }
-/* Light plates on a sand wall: the cut-out photos read like pieces in a display case. */
+/* The cut-out photos sit directly on the sand of the lighting room. */
 .reel__img {
   aspect-ratio: 1;
-  background: var(--plate);
+  background: var(--sand);
   overflow: hidden;
 }
 .reel__img img {
