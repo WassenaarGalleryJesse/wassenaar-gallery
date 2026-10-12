@@ -19,6 +19,10 @@
   <link rel="preconnect" href="https://a.1stdibscdn.com">
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="assets/site.css">
+  <!-- Anonymous visitor statistics: Umami, no cookies, no personal data. Counts only on
+       wassenaargallery.com; pageviews are sent by app.js (automatic tracking is off). -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="fcb92f44-dd41-4e73-aa52-4377b2ecb5c8"
+          data-domains="wassenaargallery.com" data-auto-track="false" data-do-not-track="true"></script>
   <script type="module" src="assets/app.js"></script>
   <script type="application/ld+json">
   {
@@ -67,7 +71,7 @@
       <a href="#eras">Eras</a>
       <a href="#buying">Buying</a>
       <a href="#about">About</a>
-      <a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">1stDibs shop ↗</a>
+      <a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener" data-out="shop" data-from="menu">1stDibs shop ↗</a>
       <div class="mobile-menu__currency">
         <span>Prices in</span>
         <div class="currency" role="group" aria-label="Show prices in">
@@ -92,7 +96,7 @@
         </p>
         <p class="hero__actions" data-reveal>
           <a class="button" href="#collection">Browse the collection</a>
-          <a class="link-out" href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">Our 1stDibs shop</a>
+          <a class="link-out" href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener" data-out="shop" data-from="hero">Our 1stDibs shop</a>
         </p>
       </div>
       <div class="salon" data-salon aria-label="A few pieces from the collection"></div>
@@ -272,7 +276,7 @@
       <div class="footer__cols">
         <div>
           <h2>Visit online</h2>
-          <p><a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener">Our shop on 1stDibs ↗</a></p>
+          <p><a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener" data-out="shop" data-from="footer">Our shop on 1stDibs ↗</a></p>
         </div>
         <div>
           <h2>Write to us</h2>
@@ -284,8 +288,9 @@
         </div>
       </div>
       <p class="footer__small">
-        Privacy: this site sets no cookies and does not track visitors. Your shortlist and currency choice are
-        kept only in your own browser, and the photos are loaded from 1stDibs.
+        Privacy: this site sets no cookies. We count visits and clicks anonymously with Umami, without
+        cookies or personal data. Your shortlist and currency choice are kept only in your own browser,
+        and the photos are loaded from 1stDibs.
         <br>
         Prices and availability come from 1stDibs and are checked daily; the 1stDibs page is always leading.
         © <span data-year>2026</span> Handelshuis Wassenaar B.V.
@@ -317,7 +322,7 @@
           <p class="piece__subtitle" data-piece-subtitle></p>
           <p class="piece__price" data-piece-price></p>
           <div class="piece__actions">
-            <a class="button button--solid" data-piece-link target="_blank" rel="noopener">View &amp; buy on 1stDibs</a>
+            <a class="button button--solid" data-piece-link data-from="piece" target="_blank" rel="noopener">View &amp; buy on 1stDibs</a>
             <button type="button" class="button button--quiet" data-piece-keep aria-pressed="false">Keep on shortlist</button>
           </div>
           <p class="piece__hint">Make an offer or ask us a question on the same page.</p>

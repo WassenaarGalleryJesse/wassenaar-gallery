@@ -62,6 +62,26 @@ listing; internal references, net prices, notes, and anything about customers or
 belong in them. Image URLs must accept a `?width=` parameter, or the site's `imgUrl()` helper
 in `assets/app.js` needs a small change for self-hosted images.
 
+## Visitor statistics
+
+Anonymous counting with [Umami](https://umami.is): no cookies, no personal data, no consent
+banner needed. The script tag in `index.html` carries the Website ID and only counts on
+`wassenaargallery.com`. Automatic tracking is off; `assets/app.js` sends one pageview per visit
+and these events (helper `track()`):
+
+| Event | Data |
+|---|---|
+| `open-piece` | `id`, `category` |
+| `to-1stdibs` | `id` (or `shop`), `from`: card, piece, description, shortlist, hero, menu, footer |
+| `filter` | `type` (category, era, style, origin, price), `value`, sometimes `from: homepage` |
+| `search` | `q` (lower case, max 60 chars, after typing stops), `results` |
+| `shortlist-add` / `shortlist-share` | `id` / `method` (link, email), `pieces` |
+| `shared-list-opened` | `pieces` |
+| `currency`, `view` | `to` / `mode` |
+
+To tell traffic sources apart, add `?ref=signature` (or similar) to links you share; it shows
+up with the pageview.
+
 ## Choosing pieces for the homepage
 
 Edit `data/curation.json` with 1stDibs ids (the `f_…` number at the end of a listing URL):

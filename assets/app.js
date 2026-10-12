@@ -85,6 +85,17 @@ function dateLabel(item) {
   return shortPeriod(item.period);
 }
 
+// Anonymous, cookie-free counting with Umami (script tag in index.html). It only counts on
+// wassenaargallery.com, and does nothing when the script is blocked or not loaded.
+function track(name, data) {
+  try {
+    if (name === undefined) window.umami?.track(); // a pageview
+    else window.umami?.track(name, data);
+  } catch {
+    /* counting must never break the page */
+  }
+}
+
 function debounce(fn, ms) {
   let t;
   return (...args) => {
@@ -269,7 +280,7 @@ function cardHtml(item, index, feature) {
       ${item.onHold ? '<span class="card__badge">On hold</span>' : ""}
       <button type="button" class="card__keep" data-keep="${item.id}" aria-pressed="${kept}"
               aria-label="${kept ? "Remove from" : "Keep on"} shortlist: ${esc(item.title)}">${kept ? "Kept" : "Keep"}</button>
-      <a class="card__out" href="${esc(item.url)}" target="_blank" rel="noopener" aria-label="${esc(item.title)} on 1stDibs">1stDibs ↗</a>
+      <a class="card__out" href="${esc(item.url)}" target="_blank" rel="noopener" data-out="${item.id}" data-from="card" aria-label="${esc(item.title)} on 1stDibs">1stDibs ↗</a>
     </article>`;
 }
 
@@ -547,6 +558,7 @@ function onHashChange() {
 function showPiece(id) {
   currentPiece = BY_ID.get(id);
   activeImage = 0;
+  track("open-piece", { id, category: currentPiece.room });
   fillPiece(currentPiece);
   if (!DETAILS) {
     const waitingFor = currentPiece;
@@ -603,6 +615,7 @@ function fillPiece(item) {
   const euro = state.currency !== "EUR" && item.price.EUR ? `<small>${esc(money(item.price.EUR, "EUR"))}; the exact amount is on 1stDibs</small>` : "";
   $("[data-piece-price]").innerHTML = `${esc(money(price))}${euro}<span class="piece__delivery">Worldwide delivery included</span>`;
   $("[data-piece-link]").href = item.url;
+  $("[data-piece-link]").dataset.out = item.id;
   const keep = $("[data-piece-keep]");
   const kept = shortlist.includes(item.id);
   keep.setAttribute("aria-pressed", String(kept));
@@ -626,8 +639,8 @@ function fillPiece(item) {
   const description = detail?.description || item.excerpt || "";
   const condition = detail?.conditionNotes ? `<p class="piece__condition"><strong>Condition.</strong> ${esc(detail.conditionNotes)}</p>` : "";
   $("[data-piece-excerpt]").innerHTML = description
-    ? `<p>${esc(description)}</p>${condition}<a href="${esc(item.url)}" target="_blank" rel="noopener">More on 1stDibs ↗</a>`
-    : `<a href="${esc(item.url)}" target="_blank" rel="noopener">Description and more photos on 1stDibs ↗</a>`;
+    ? `<p>${esc(description)}</p>${condition}<a href="${esc(item.url)}" target="_blank" rel="noopener" data-out="${item.id}" data-from="description">More on 1stDibs ↗</a>`
+    : `<a href="${esc(item.url)}" target="_blank" rel="noopener" data-out="${item.id}" data-from="description">Description and more photos on 1stDibs ↗</a>`;
 
   const photos = imagesOf(item);
   setPieceImage(activeImage);
@@ -685,6 +698,7 @@ function toggleKeep(id) {
   const had = shortlist.includes(id);
   shortlist = had ? shortlist.filter((x) => x !== id) : shortlist.concat(id);
   store.set("wg:shortlist", shortlist);
+  if (!had) track("shortlist-add", { id });
   $$(`[data-keep="${id}"]`).forEach((btn) => {
     const inDialog = btn.hasAttribute("data-piece-keep");
     btn.setAttribute("aria-pressed", String(!had));
@@ -717,7 +731,7 @@ function renderShortlist() {
     .map(
       (item) => `<li>
         <span class="drawer__plate"><img src="${imgUrl(item.images[0], 160)}" alt="" loading="lazy"></span>
-        <span><a href="${esc(item.url)}" target="_blank" rel="noopener">${esc(item.title)} ↗</a>
+        <span><a href="${esc(item.url)}" target="_blank" rel="noopener" data-out="${item.id}" data-from="shortlist">${esc(item.title)} ↗</a>
           <span class="drawer__meta">${esc(money(priceOf(item)))} · ${esc(dateLabel(item))}</span></span>
         <button type="button" class="drawer__remove" data-keep="${item.id}" data-drawer-remove aria-label="Remove ${esc(item.title)}">Remove</button>
       </li>`,
@@ -731,6 +745,7 @@ function renderShortlist() {
 async function copyShortlist() {
   const status = $("[data-shortlist-status]");
   try {
+    track("shortlist-share", { method: "link", pieces: shortlist.length });
     await navigator.clipboard.writeText(shortlistLink());
     status.textContent = "Link copied. Anyone who opens it sees these pieces.";
   } catch {
@@ -870,6 +885,10 @@ function bindEvents() {
   document.addEventListener("click", (e) => {
     const t = e.target;
 
+    const out = t.closest("a[data-out]");
+    if (out) track("to-1stdibs", { id: out.dataset.out, from: out.dataset.from });
+    if (t.closest("[data-shortlist-mail]")) track("shortlist-share", { method: "email", pieces: shortlist.length });
+
     const keep = t.closest("[data-keep]");
     if (keep) {
       e.preventDefault();
@@ -879,6 +898,8 @@ function bindEvents() {
     const setFilter = t.closest("[data-set-filter]");
     if (setFilter) {
       e.preventDefault();
+      const [type, value] = setFilter.dataset.setFilter.split("=");
+      track("filter", { type: type === "room" ? "category" : type, value, from: "homepage" });
       setFilterFromString(setFilter.dataset.setFilter);
       return;
     }
@@ -896,12 +917,14 @@ function bindEvents() {
     const room = t.closest("[data-room]");
     if (room) {
       state.room = room.dataset.room;
+      if (state.room !== "all") track("filter", { type: "category", value: state.room });
       renderCollection();
       return;
     }
     const era = t.closest("[data-era]");
     if (era && !era.disabled) {
       state.era = state.era === era.dataset.era ? null : era.dataset.era;
+      if (state.era) track("filter", { type: "era", value: state.era });
       renderCollection();
       return;
     }
@@ -909,7 +932,11 @@ function bindEvents() {
     if (chip) {
       const set = chip.dataset.style != null ? state.styles : state.origins;
       const value = chip.dataset.style ?? chip.dataset.origin;
-      set.has(value) ? set.delete(value) : set.add(value);
+      if (set.has(value)) set.delete(value);
+      else {
+        set.add(value);
+        track("filter", { type: chip.dataset.style != null ? "style" : "origin", value });
+      }
       renderCollection();
       return;
     }
@@ -928,6 +955,7 @@ function bindEvents() {
     const price = t.closest("[data-price]");
     if (price) {
       state.price = state.price === price.dataset.price ? null : price.dataset.price;
+      if (state.price) track("filter", { type: "price", value: state.price });
       renderCollection();
       return;
     }
@@ -950,12 +978,14 @@ function bindEvents() {
     const view = t.closest("[data-view]");
     if (view && view.tagName === "BUTTON") {
       state.view = view.dataset.view;
+      track("view", { mode: state.view });
       renderCollection({ keepScroll: true, animate: false });
       return;
     }
     const currency = t.closest("[data-currency]");
     if (currency) {
       state.currency = currency.dataset.currency;
+      track("currency", { to: state.currency });
       store.set("wg:currency", state.currency);
       $$("[data-currency]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.currency === state.currency)));
       renderPrices();
@@ -997,6 +1027,14 @@ function bindEvents() {
     renderCollection({ animate: false });
   }, 180);
   els.search.addEventListener("input", onSearch);
+  let lastSearch = "";
+  const trackSearch = debounce(() => {
+    const q = els.search.value.trim().toLowerCase().slice(0, 60);
+    if (q.length < 3 || q === lastSearch) return;
+    lastSearch = q;
+    track("search", { q, results: state.results.length });
+  }, 1500);
+  els.search.addEventListener("input", trackSearch);
   // Searching also looks through the full descriptions, which load on first use.
   els.search.addEventListener("focus", () => loadDetails().then(() => state.q && renderCollection({ keepScroll: true, animate: false })), { once: true });
   els.sort.addEventListener("change", () => {
@@ -1131,6 +1169,10 @@ async function start() {
   setupReel();
   observeReveals();
 
+  // One pageview per visit. Umami's automatic tracking is off (see index.html) because the
+  // address bar changes with every filter; those are counted as events instead.
+  track();
+  if (state.list) track("shared-list-opened", { pieces: state.list.length });
   if (pieceIdFromHash()) showPiece(pieceIdFromHash());
   if (state.list || new URLSearchParams(location.search).toString()) {
     requestAnimationFrame(() => $("#collection").scrollIntoView());
