@@ -34,6 +34,7 @@
   --ink-3: #8a8277;
   --rule: #cfc7ba;
   --accent: #7b2d1e;
+  --sand: #ddd4c6;
   --night: #15120f;
   --night-2: #221e19;
   --night-ink: #ede6da;
@@ -467,6 +468,7 @@ p {
   display: block;
   min-height: 0;
   text-decoration: none;
+  transition: transform 900ms var(--ease);
 }
 .salon__piece:nth-child(1) {
   grid-area: 1 / 1 / 4 / 5;
@@ -495,7 +497,11 @@ p {
 .salon__piece[data-hang] img {
   object-position: 50% 0%;
 }
-.salon__piece:hover img {
+/* On hover the whole piece (photo plus its paper background) lifts and sits above its
+   neighbours, so the caption is never covered and no white photo edge shows. */
+.salon__piece:hover,
+.salon__piece:focus-visible {
+  z-index: 3;
   transform: translateY(-6px);
 }
 
@@ -509,6 +515,8 @@ p {
   font-size: 0.74rem;
   line-height: 1.35;
   color: var(--ink-2);
+  background: var(--paper);
+  padding: 6px 8px;
   opacity: 0;
   transition: opacity 300ms, transform 400ms var(--ease);
   pointer-events: none;
@@ -575,7 +583,7 @@ p {
   grid-template-columns: 3.5rem minmax(0, 1fr) minmax(0, 0.9fr) 3rem;
   align-items: baseline;
   gap: 12px 24px;
-  padding: clamp(14px, 1.8vw, 22px) 0;
+  padding: clamp(12px, 1.4vw, 18px) 0;
   border-top: 1px solid var(--rule);
   text-decoration: none;
   transition: color 250ms;
@@ -587,10 +595,10 @@ p {
   font-variant-numeric: tabular-nums;
 }
 .room-row__name {
-  font-size: clamp(1.9rem, 4.6vw, 4.2rem);
-  line-height: 1;
-  letter-spacing: -0.025em;
-  font-weight: 330;
+  font-size: clamp(1.4rem, 2.4vw, 2.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  font-weight: 360;
   transition: transform 500ms var(--ease), color 250ms;
 }
 .room-row__kinds {
@@ -616,7 +624,7 @@ p {
 }
 .room-row:hover .room-row__name,
 .room-row:focus-visible .room-row__name {
-  transform: translateX(14px);
+  transform: translateX(8px);
   color: var(--accent);
 }
 
@@ -675,8 +683,8 @@ p {
 /* ------------------------------------------------------------- lightroom */
 
 .lightroom {
-  background: var(--night);
-  color: var(--night-ink);
+  background: var(--sand);
+  color: var(--ink);
   padding: clamp(64px, 10vw, 140px) 0 clamp(56px, 8vw, 110px);
   display: grid;
   grid-template-columns: minmax(var(--gutter), 1fr) minmax(0, calc(var(--max) - 2 * var(--gutter))) minmax(var(--gutter), 1fr);
@@ -684,7 +692,7 @@ p {
   overflow: hidden;
 }
 .lightroom .eyebrow {
-  color: var(--night-dim);
+  color: var(--ink-2);
 }
 .lightroom__intro {
   grid-column: 2;
@@ -706,14 +714,14 @@ p {
 }
 .lightroom__intro p {
   grid-column: 8 / span 5;
-  color: var(--night-dim);
+  color: var(--ink-2);
   font-size: 1.05rem;
   text-wrap: pretty;
 }
 .lightroom__intro .link-arrow {
   grid-column: 8 / span 5;
   justify-self: start;
-  color: var(--night-ink);
+  color: var(--ink);
 }
 
 .reel {
@@ -740,7 +748,7 @@ p {
   text-decoration: none;
   color: inherit;
 }
-/* Light plates on a dark wall: the cut-out photos read like pieces in a lit display case. */
+/* Light plates on a sand wall: the cut-out photos read like pieces in a display case. */
 .reel__img {
   aspect-ratio: 1;
   background: var(--plate);
@@ -769,7 +777,7 @@ p {
 .reel__caption span:last-child {
   font-family: var(--sans);
   font-size: 0.82rem;
-  color: var(--night-dim);
+  color: var(--ink-2);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }
@@ -781,14 +789,14 @@ p {
 .reel__controls button {
   width: 48px;
   height: 48px;
-  border: 1px solid #4a433a;
+  border: 1px solid #b7ad9d;
   background: none;
-  color: var(--night-ink);
+  color: var(--ink);
   font-family: var(--sans);
   transition: background-color 200ms, border-color 200ms;
 }
 .reel__controls button:hover {
-  border-color: var(--night-ink);
+  border-color: var(--ink);
 }
 
 @media (max-width: 900px) {
@@ -1314,23 +1322,9 @@ body.masthead-hidden .toolbar {
   mix-blend-mode: multiply;
   transition: transform 900ms var(--ease), opacity 500ms;
 }
-.card__alt {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 600ms var(--ease), transform 1400ms var(--ease);
-  transform: scale(1.03);
-}
 @media (hover: hover) {
-  .card__link:hover .card__alt.is-loaded {
-    opacity: 1;
-    transform: scale(1);
-  }
   .card__link:hover .card__img {
-    transform: scale(0.97);
+    transform: scale(1.04);
   }
 }
 
@@ -1483,7 +1477,6 @@ body.masthead-hidden .toolbar {
   height: 88%;
   object-position: 50% 50%;
 }
-.grid[data-view="index"] .card__alt,
 .grid[data-view="index"] .card__keep,
 .grid[data-view="index"] .card__out,
 .grid[data-view="index"] .card__badge {

@@ -254,7 +254,6 @@ function cardHtml(item, index, feature) {
         <div class="card__plate">
           <img class="card__img" src="${imgUrl(item.images[0], 480)}" srcset="${srcset(item.images[0])}" sizes="${sizes}"
                alt="${esc(item.title)}" loading="lazy" decoding="async">
-          ${item.images[1] ? `<img class="card__alt" data-src="${imgUrl(item.images[1], feature ? 1100 : 640)}" alt="" decoding="async">` : ""}
         </div>
         <div class="card__meta">
           <p class="card__kicker">${esc(kicker(item))}</p>
@@ -350,22 +349,30 @@ function renderRefine() {
       <span class="era-seg__label">${esc(ERA_LABEL[id])}</span><span class="era-seg__count">${numberFormat.format(n)}</span></button>`;
   }).join("");
 
-  const chipList = (counts, selected, attr, showAll, moreAttr, limit = 9) => {
+  // Shows the most common options; "+ n more" opens the rest and "Show fewer" folds them away
+  // again. Options someone has chosen always stay visible.
+  const chipList = (counts, selected, attr, showAll, toggleAttr, limit = 9) => {
     const entries = [...counts.entries()].sort((a, b) => b[1] - a[1]);
     for (const value of selected) if (!counts.has(value)) entries.unshift([value, 0]);
-    const visible = showAll ? entries : entries.slice(0, limit);
+    const visible = showAll ? entries : entries.filter(([value], i) => i < limit || selected.has(value));
     const hidden = entries.length - visible.length;
+    const toggle =
+      hidden > 0
+        ? `<button type="button" class="opt opt--more" ${toggleAttr}="more">+ ${hidden} more</button>`
+        : showAll && entries.length > limit
+          ? `<button type="button" class="opt opt--more" ${toggleAttr}="less">Show fewer</button>`
+          : "";
     return (
       visible
         .map(
           ([value, n]) =>
             `<button type="button" class="opt" ${attr}="${esc(value)}" aria-pressed="${selected.has(value)}">${esc(value)}<sup>${n}</sup></button>`,
         )
-        .join("") + (hidden > 0 ? `<button type="button" class="opt opt--more" ${moreAttr}>+ ${hidden} more</button>` : "")
+        .join("") + toggle
     );
   };
-  els.styleChips.innerHTML = chipList(countBy("style", "style"), state.styles, "data-style", showAllStyles, "data-more-styles");
-  els.originChips.innerHTML = chipList(countBy("origin", "origin"), state.origins, "data-origin", showAllOrigins, "data-more-origins", 8);
+  els.styleChips.innerHTML = chipList(countBy("style", "style"), state.styles, "data-style", showAllStyles, "data-toggle-styles");
+  els.originChips.innerHTML = chipList(countBy("origin", "origin"), state.origins, "data-origin", showAllOrigins, "data-toggle-origins", 8);
 
   const priceCounts = countBy((i) => PRICE_BANDS.find((b) => inBand(i, b.id))?.id, "price");
   const sym = CURRENCIES[state.currency];
@@ -906,13 +913,15 @@ function bindEvents() {
       renderCollection();
       return;
     }
-    if (t.closest("[data-more-styles]")) {
-      showAllStyles = true;
+    const styleToggle = t.closest("[data-toggle-styles]");
+    if (styleToggle) {
+      showAllStyles = styleToggle.dataset.toggleStyles === "more";
       renderRefine();
       return;
     }
-    if (t.closest("[data-more-origins]")) {
-      showAllOrigins = true;
+    const originToggle = t.closest("[data-toggle-origins]");
+    if (originToggle) {
+      showAllOrigins = originToggle.dataset.toggleOrigins === "more";
       renderRefine();
       return;
     }
@@ -982,16 +991,6 @@ function bindEvents() {
       { rootMargin: "600px 0px" },
     ).observe(els.moreWrap);
   }
-
-  // Second photo loads only when someone actually hovers a card.
-  els.grid.addEventListener("pointerover", (e) => {
-    const card = e.target.closest(".card");
-    const alt = card && $(".card__alt[data-src]", card);
-    if (!alt) return;
-    alt.src = alt.dataset.src;
-    alt.removeAttribute("data-src");
-    alt.addEventListener("load", () => alt.classList.add("is-loaded"), { once: true });
-  });
 
   const onSearch = debounce(() => {
     state.q = els.search.value.trim();
