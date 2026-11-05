@@ -649,7 +649,7 @@ function fillPiece(item) {
       ? photos
           .map(
             (src, n) =>
-              `<button type="button" data-thumb="${n}" aria-pressed="${n === activeImage}" aria-label="Photo ${n + 1}"><img src="${imgUrl(src, 160)}" alt=""></button>`,
+              `<button type="button" data-thumb="${n}" aria-pressed="${n === activeImage}" aria-label="Photo ${n + 1}"><img src="${imgUrl(src, 160)}" alt="" loading="lazy" decoding="async"></button>`,
           )
           .join("")
       : "";
@@ -676,7 +676,8 @@ function setPieceImage(n) {
   activeImage = Math.min(n, photos.length - 1);
   const plate = $("[data-piece-plate]");
   plate.classList.remove("is-zoomed");
-  plate.classList.toggle("is-photo", activeImage > 0);
+  // Cut-outs (white background removed) sit on the paper; ordinary photos fill the plate.
+  plate.classList.toggle("is-photo", activeImage > 0 && !/bg_processed/.test(photos[activeImage]));
   const img = $("[data-piece-img]");
   const src = photos[activeImage];
   img.alt = activeImage === 0 ? item.title : `${item.title}, photo ${activeImage + 1}`;
@@ -684,6 +685,28 @@ function setPieceImage(n) {
   img.srcset = srcset(src, [640, 960, 1400, 1800]);
   img.sizes = "(max-width: 900px) 100vw, 58vw";
   $$("[data-thumb]").forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.thumb) === activeImage)));
+
+  const many = photos.length > 1;
+  $("[data-piece-count]").textContent = many ? `${activeImage + 1} / ${photos.length}` : "";
+  $$("[data-photo-step]").forEach((b) => {
+    const to = activeImage + Number(b.dataset.photoStep);
+    b.disabled = !many || to < 0 || to >= photos.length;
+  });
+
+  // Keep the chosen thumbnail in view without scrolling the page itself.
+  const strip = $("[data-piece-thumbs]");
+  const thumb = $(`[data-thumb="${activeImage}"]`, strip);
+  if (thumb) strip.scrollTo({ left: thumb.offsetLeft - (strip.clientWidth - thumb.offsetWidth) / 2, behavior: "smooth" });
+
+  // Fetch the next photo early so stepping through feels instant.
+  if (photos[activeImage + 1]) new Image().src = imgUrl(photos[activeImage + 1], 1200);
+}
+
+// Steps through a piece's photos; with acrossPieces, running off either end moves to the next piece.
+function stepPhoto(delta, acrossPieces = false) {
+  const to = activeImage + delta;
+  if (to >= 0 && to < imagesOf(currentPiece).length) setPieceImage(to);
+  else if (acrossPieces) stepPiece(delta);
 }
 
 function stepPiece(delta) {
@@ -1062,14 +1085,31 @@ function bindEvents() {
   $("[data-piece-next]").addEventListener("click", () => stepPiece(1));
   els.piece.addEventListener("keydown", (e) => {
     if (e.target.closest("input, select, textarea")) return;
-    if (e.key === "ArrowLeft") stepPiece(-1);
-    if (e.key === "ArrowRight") stepPiece(1);
+    if (e.key === "ArrowLeft") stepPhoto(-1, true);
+    if (e.key === "ArrowRight") stepPhoto(1, true);
   });
   $("[data-piece-thumbs]").addEventListener("click", (e) => {
     const b = e.target.closest("[data-thumb]");
     if (b) setPieceImage(Number(b.dataset.thumb));
   });
+  // Swipe sideways on the photo to step through it on touch screens.
+  let swipeFrom = null;
+  $("[data-piece-plate]").addEventListener("touchstart", (e) => {
+    swipeFrom = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+  }, { passive: true });
+  $("[data-piece-plate]").addEventListener("touchend", (e) => {
+    if (!swipeFrom || e.currentTarget.classList.contains("is-zoomed")) return;
+    const dx = e.changedTouches[0].clientX - swipeFrom.x;
+    const dy = e.changedTouches[0].clientY - swipeFrom.y;
+    swipeFrom = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) stepPhoto(dx < 0 ? 1 : -1);
+  });
   $("[data-piece-plate]").addEventListener("click", (e) => {
+    const step = e.target.closest("[data-photo-step]");
+    if (step) {
+      stepPhoto(Number(step.dataset.photoStep));
+      return;
+    }
     const plate = e.currentTarget;
     const img = $("img", plate);
     const r = plate.getBoundingClientRect();
