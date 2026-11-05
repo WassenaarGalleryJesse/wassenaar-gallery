@@ -2,6 +2,32 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-05-f_44431442",
+      "date": "2026-11-05",
+      "pieces": [
+        {
+          "id": "f_44431442",
+          "title": "Antique Arts & Crafts Chandelier Pendant with Mackintosh Rose Stained Glass",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/rare-antique-arts-crafts-chandelier-pendant-w-mackintosh-roses-stained-glass-for-sale/f_23413/f_444314421747119517749/f_44431442_1747119518479_bg_processed.jpg"
+        }
+      ],
+      "image": "posts/2026-11-05-f_44431442.jpg"
+    },
+    {
+      "id": "2026-11-05-f_48690472",
+      "date": "2026-11-05",
+      "pieces": [
+        {
+          "id": "f_48690472",
+          "title": "Art Nouveau Bronze Three-Light Chandelier with Signed Daum Nancy Glass Shades",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/art-nouveau-bronze-three-light-chandelier-with-signed-daum-nancy-glass-shades-for-sale/f_23413/f_486904721770398316197/f_48690472_1770398317212_bg_processed.jpg"
+        }
+      ],
+      "image": "posts/2026-11-05-f_48690472.jpg"
+    },
+    {
       "id": "2026-11-05-f_52801392",
       "date": "2026-11-05",
       "pieces": [
