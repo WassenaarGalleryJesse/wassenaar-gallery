@@ -15,6 +15,7 @@ assets/fonts/              Newsreader + Instrument Sans (OFL, self-hosted: no Go
 data/listings.json         the collection (generated, do not edit by hand)
 data/curation.json         hand-picked pieces for the homepage (edit freely)
 data/details.json          descriptions and extra photos, loaded on demand (generated)
+instagram/                 the link in our Instagram bio: wassenaargallery.com/instagram
 ```
 
 ## Run it locally
@@ -78,6 +79,8 @@ and these events (helper `track()`):
 | `shortlist-add` / `shortlist-share` | `id` / `method` (link, email), `pieces` |
 | `shared-list-opened` | `pieces` |
 | `currency`, `view` | `to` / `mode` |
+| `instagram-post` | `post`, `id`: the piece it leads to, or `several`, `link`, `collection`; on the Instagram page |
+| `instagram-piece` | `post`, `id`: a piece chosen from a post with several pieces |
 
 To tell traffic sources apart, add `?ref=signature` (or similar) to links you share; it shows
 up with the pageview.
@@ -95,6 +98,48 @@ Edit `data/curation.json` with 1stDibs ids (the `f_…` number at the end of a l
 
 Sold or missing pieces are skipped automatically; the site then chooses one itself.
 Cut-out photos (white background) work best. The About photo is `assets/img/about.jpg`.
+
+## The Instagram page
+
+`wassenaargallery.com/instagram` is the link in our Instagram bio (set it in Instagram under
+Edit profile → Links). It repeats our posts as a three-column grid, newest first:
+
+- a post with **one piece** opens that piece on the homepage (`/#piece=f_…`), with its price and
+  the link to 1stDibs;
+- a post with **several pieces** first shows them in a list with their prices, like 1stDibs does;
+- a piece that has **sold** since the post is marked *Sold* and leads to similar pieces in the
+  same category instead.
+
+The grid is drawn from `instagram/posts.json` alone, so it shows at once; `data/listings.json`
+then marks what has sold and adds the prices. Add and remove posts with the private script:
+
+```bash
+node private/instagram-post.mjs add ~/Desktop/post.jpg https://www.1stdibs.com/…/id-f_52801392/ --publish
+node private/instagram-post.mjs add f_52801392 f_52939062        # no photo: the tile shows the first piece
+node private/instagram-post.mjs add ~/Desktop/visit.jpg --link "/?category=lighting#collection"
+node private/instagram-post.mjs list
+node private/instagram-post.mjs remove 2026-11-05-f_52801392 --publish
+node private/instagram-post.mjs publish                          # commit and push instagram/ only
+```
+
+`instagram/posts.json` looks like this:
+
+```json
+{
+  "posts": [
+    {
+      "id": "2026-11-05-f_52801392",
+      "date": "2026-11-05",
+      "pieces": [{ "id": "f_52801392", "title": "…", "room": "lighting", "photo": "https://…jpeg" }],
+      "image": "posts/2026-11-05-f_52801392.jpg"
+    }
+  ]
+}
+```
+
+`image` is the post's own photo (720 px on the short side, without metadata); without it the
+tile shows the first piece's photo, as on the homepage. `link` (optional, starting with `/` or
+`https://`) sends the tile somewhere else, for a post that isn't about one piece.
 
 ## Publish it for free on wassenaargallery.com
 

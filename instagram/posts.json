@@ -1,0 +1,18 @@
+{
+  "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
+  "posts": [
+    {
+      "id": "2026-11-05-f_52801392",
+      "date": "2026-11-05",
+      "pieces": [
+        {
+          "id": "f_52801392",
+          "title": "Honey Glow & Lightning Veins: 1920s Art Deco Alabaster Pendant Light",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_528013921793130730775/04f10220-b207-45dc-9a8f-5d46caa3ea10/IMG_0462_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-05-f_52801392.jpg"
+    }
+  ]
+}

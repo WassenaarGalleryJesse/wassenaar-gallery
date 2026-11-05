@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From our Instagram · Wassenaar Gallery</title>
+  <meta name="description" content="The pieces from the Wassenaar Gallery Instagram. Tap a photo to see the piece, its price and where to buy it on 1stDibs.">
+  <link rel="canonical" href="https://wassenaargallery.com/instagram/">
+  <meta name="theme-color" content="#ece7de">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wassenaar Gallery">
+  <meta property="og:title" content="From our Instagram · Wassenaar Gallery">
+  <meta property="og:description" content="Tap a photo to see the piece, its price and where to buy it.">
+  <meta property="og:url" content="https://wassenaargallery.com/instagram/">
+  <meta property="og:image" content="https://wassenaargallery.com/assets/img/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/instagram/posts.json" as="fetch" crossorigin>
+  <!-- The collection is loaded after the grid is drawn: it only tells which pieces have sold
+       and their prices, and it is already cached when a tap opens the piece on the homepage. -->
+  <link rel="preconnect" href="https://a.1stdibscdn.com">
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/instagram/instagram.css">
+  <!-- Anonymous visitor statistics: Umami, no cookies, no personal data (see the homepage). -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="fcb92f44-dd41-4e73-aa52-4377b2ecb5c8"
+          data-domains="wassenaargallery.com" data-auto-track="false" data-do-not-track="true"></script>
+  <script type="module" src="/instagram/instagram.js"></script>
+</head>
+<body class="ig">
+  <header class="ig-head">
+    <a class="ig-head__avatar" href="/" aria-label="Wassenaar Gallery homepage">
+      <img src="/brand/social/wassenaar-mark.svg" alt="" width="72" height="72">
+    </a>
+    <h1 class="ig-head__name">Wassenaar <em>Gallery</em></h1>
+    <a class="ig-head__handle" href="https://www.instagram.com/wassenaargallery/" target="_blank" rel="noopener">@wassenaargallery</a>
+    <p class="ig-head__lede">The pieces from our posts. Tap a photo to see the piece and its price; everything is sold through 1stDibs, with delivery included.</p>
+    <a class="link-arrow" href="/">The whole collection</a>
+  </header>
+
+  <main>
+    <h2 class="visually-hidden">Posts</h2>
+    <ul class="ig-grid" data-grid aria-busy="true"></ul>
+    <p class="ig-empty" data-empty hidden>
+      The first posts are on their way.
+      <a href="/">Walk through the collection</a> in the meantime.
+    </p>
+    <noscript>
+      <p class="ig-empty">This page needs JavaScript to show our posts. <a href="/">The whole collection</a> is on the homepage.</p>
+    </noscript>
+  </main>
+
+  <!-- A post with several pieces opens this list first; a post with one piece goes straight to it. -->
+  <dialog class="ig-sheet" data-sheet aria-labelledby="ig-sheet-title">
+    <div class="ig-sheet__frame">
+      <div class="ig-sheet__photo" data-sheet-photo></div>
+      <div class="ig-sheet__body">
+        <div class="ig-sheet__head">
+          <h2 class="eyebrow" id="ig-sheet-title" data-sheet-title>In this post</h2>
+          <button type="button" class="ig-sheet__close" data-sheet-close aria-label="Close">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+          </button>
+        </div>
+        <ul class="ig-sheet__pieces" data-sheet-pieces></ul>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="ig-foot">
+    <p class="ig-foot__links">
+      <a href="/">wassenaargallery.com</a>
+      <a href="https://www.instagram.com/wassenaargallery/" target="_blank" rel="noopener">@wassenaargallery on Instagram ↗</a>
+      <a href="https://www.1stdibs.com/dealers/handelshuis-wassenaar/" target="_blank" rel="noopener" data-out="shop">Our shop on 1stDibs ↗</a>
+    </p>
+    <p class="ig-foot__small">
+      No cookies; visits are counted anonymously. Prices and availability come from 1stDibs and
+      are checked daily. © <span data-year>2026</span> Handelshuis Wassenaar B.V.
+    </p>
+  </footer>
+</body>
+</html>
