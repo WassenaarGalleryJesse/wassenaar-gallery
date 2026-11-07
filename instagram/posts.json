@@ -2,6 +2,19 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-07-f_52958922",
+      "date": "2026-11-07",
+      "pieces": [
+        {
+          "id": "f_52958922",
+          "title": "XL 21.5\" Ø & Perfectly Balanced Antique Hand-Carved Alabaster Chandelier Fixture",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_529589221793906427379/f7946beb-f49c-4c13-9459-6c5eed45f3b8/IMG_1071_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-07-f_52958922.jpg"
+    },
+    {
       "id": "2026-11-05-f_44431442",
       "date": "2026-11-05",
       "pieces": [
