@@ -116,6 +116,7 @@ then marks what has sold and adds the prices. Add and remove posts with the priv
 ```bash
 node private/instagram-post.mjs add ~/Desktop/post.jpg https://www.1stdibs.com/…/id-f_52801392/ --publish
 node private/instagram-post.mjs add f_52801392 f_52939062        # no photo: the tile shows the first piece
+node private/instagram-post.mjs add ~/Desktop/reel-cover.jpg f_52958922 --reel  # a reel: its cover, with a play mark
 node private/instagram-post.mjs add ~/Desktop/visit.jpg --link "/?category=lighting#collection"
 node private/instagram-post.mjs list
 node private/instagram-post.mjs remove 2026-11-05-f_52801392 --publish
@@ -139,7 +140,8 @@ node private/instagram-post.mjs publish                          # commit and pu
 
 `image` is the post's own photo (720 px on the short side, without metadata); without it the
 tile shows the first piece's photo, as on the homepage. `link` (optional, starting with `/` or
-`https://`) sends the tile somewhere else, for a post that isn't about one piece.
+`https://`) sends the tile somewhere else, for a post that isn't about one piece. `reel: true`
+marks a reel: the tile shows its cover (`image`) with a small play mark, as in the Instagram grid.
 
 ## Publish it for free on wassenaargallery.com
 

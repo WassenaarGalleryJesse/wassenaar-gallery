@@ -104,16 +104,20 @@ function postPhoto(post, pieces, { width = 480, attrs = "" } = {}) {
 
 // ---------------------------------------------------------------- grid
 
+// A reel shows its cover with a small play mark, as in the Instagram grid.
+const REEL_ICON = `<span class="ig-tile__reel" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 8.2v7.6l6-3.8z" fill="currentColor"/></svg></span>`;
+
 function tileHtml(post, i) {
   const pieces = piecesOf(post);
   const to = targetOf(post, pieces);
   const titles = pieces.map((p) => p.title).filter(Boolean);
   const name = titles[0] || "the collection";
-  const label = to.sold
+  const label = (post.reel ? "Reel: " : "") + (to.sold
     ? `Sold: ${name}. See similar pieces`
     : to.sheet
       ? `${pieces.length} pieces in this post${titles.length ? `: ${titles.join("; ")}` : ""}`
-      : name;
+      : name);
+  const countBadge = pieces.length > 1 && !to.sold;
   const caption = !titles.length ? "" : pieces.length > 1 ? `${titles[0]} and ${pieces.length - 1} more` : titles[0];
   const loading = i < 9 ? `loading="eager"${i < 3 ? ' fetchpriority="high"' : ""}` : 'loading="lazy"';
   const photo = postPhoto(post, pieces, { attrs: loading });
@@ -122,7 +126,8 @@ function tileHtml(post, i) {
   return `<li><a class="${classes}" href="${esc(to.href)}"${external} data-post="${esc(post.id)}" data-piece="${esc(to.id)}"${to.sheet ? " data-open-sheet" : ""} aria-label="${esc(label)}">
     ${photo.html || `<span class="ig-tile__name">${esc(name)}</span>`}
     ${to.sold ? `<span class="ig-tile__badge ig-tile__badge--sold">Sold</span>` : ""}
-    ${pieces.length > 1 && !to.sold ? `<span class="ig-tile__badge ig-tile__badge--count">${pieces.length} pieces</span>` : ""}
+    ${countBadge ? `<span class="ig-tile__badge ig-tile__badge--count">${pieces.length} pieces</span>` : ""}
+    ${post.reel && !countBadge ? REEL_ICON : ""}
     ${caption && photo.html ? `<span class="ig-tile__caption" aria-hidden="true">${esc(caption)}</span>` : ""}
   </a></li>`;
 }
