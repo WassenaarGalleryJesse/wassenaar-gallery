@@ -96,6 +96,36 @@ function track(name, data) {
   }
 }
 
+// Opening the site with ?notrack stops counting visits from this browser (for our own visits);
+// ?track counts them again. Umami honours the umami.disabled flag in localStorage, which is
+// shared with /instagram/ because it is on the same site. No cookie is involved.
+function applyCountingSwitch() {
+  const params = new URLSearchParams(location.search);
+  const off = params.has("notrack");
+  if (!off && !params.has("track")) return;
+  let message = off ? "Visits from this browser are no longer counted." : "Visits from this browser are counted again.";
+  try {
+    if (off) localStorage.setItem("umami.disabled", "1");
+    else localStorage.removeItem("umami.disabled");
+  } catch {
+    message = "This browser blocks site storage, so counting can't be switched here.";
+  }
+  params.delete("notrack");
+  params.delete("track");
+  const rest = params.toString();
+  history.replaceState(history.state, "", location.pathname + (rest ? `?${rest}` : "") + location.hash);
+  notice(message);
+}
+
+function notice(text) {
+  const el = document.createElement("p");
+  el.className = "notice";
+  el.setAttribute("role", "status");
+  el.textContent = text;
+  document.body.append(el);
+  setTimeout(() => el.remove(), 6000);
+}
+
 function debounce(fn, ms) {
   let t;
   return (...args) => {
@@ -613,7 +643,9 @@ function fillPiece(item) {
   $("[data-piece-subtitle]").textContent = item.subtitle || "";
   const price = priceOf(item);
   const euro = state.currency !== "EUR" && item.price.EUR ? `<small>${esc(money(item.price.EUR, "EUR"))}; the exact amount is on 1stDibs</small>` : "";
-  $("[data-piece-price]").innerHTML = `${esc(money(price))}${euro}<span class="piece__delivery">Worldwide delivery included</span>`;
+  const hold = item.onHold ? `<span class="piece__hold">On hold: reserved for a client for now. Ask on 1stDibs to hear if it becomes available.</span>` : "";
+  $("[data-piece-price]").innerHTML = `${esc(money(price))}${euro}<span class="piece__delivery">Worldwide delivery included</span>${hold}`;
+  $("[data-piece-link]").textContent = item.onHold ? "View on 1stDibs" : "View & buy on 1stDibs";
   $("[data-piece-link]").href = item.url;
   $("[data-piece-link]").dataset.out = item.id;
   const keep = $("[data-piece-keep]");
@@ -1134,6 +1166,7 @@ function bindEvents() {
 // ---------------------------------------------------------------- start
 
 async function start() {
+  applyCountingSwitch(); // first: the filters rewrite the address bar and would drop ?notrack
   els.grid = $("[data-grid]");
   els.count = $("[data-result-count]");
   els.empty = $("[data-empty]");

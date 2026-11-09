@@ -1962,6 +1962,30 @@ dialog {
   font-size: 0.8rem;
   color: var(--ink-2);
 }
+.piece__hold {
+  display: block;
+  margin-top: 10px;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  font-size: 0.86rem;
+  color: var(--ink);
+}
+
+/* Short confirmation, e.g. after opening the site with ?notrack. */
+.notice {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 50;
+  transform: translateX(-50%);
+  max-width: calc(100vw - 32px);
+  margin: 0;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.86rem;
+}
 .piece__price small {
   font-size: 0.78rem;
   color: var(--ink-2);
