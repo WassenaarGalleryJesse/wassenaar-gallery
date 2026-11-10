@@ -2,6 +2,19 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-10-f_52983982",
+      "date": "2026-11-10",
+      "pieces": [
+        {
+          "id": "f_52983982",
+          "title": "Art Deco Brass Four-Light Chandelier with Opal Glass Globe Shades",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_529839821793989825888/497aedbc-7a8c-44bb-a61d-868230e2d4ad/IMG_1142_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-10-f_52983982.jpg"
+    },
+    {
       "id": "2026-11-08-f_52958922",
       "date": "2026-11-08",
       "pieces": [
