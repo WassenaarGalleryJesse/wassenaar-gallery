@@ -2,6 +2,20 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-11-f_52018672",
+      "date": "2026-11-11",
+      "pieces": [
+        {
+          "id": "f_52018672",
+          "title": "Antique Renaissance Revival Gilt Bronze Lantern with Star-Cut Glass",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_520186721789500316416/8cbf702a-16ff-4d0a-b02b-649309d84995/IMG_8483_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-11-f_52018672.jpg",
+      "reel": true
+    },
+    {
       "id": "2026-11-10-f_52983982",
       "date": "2026-11-10",
       "pieces": [
