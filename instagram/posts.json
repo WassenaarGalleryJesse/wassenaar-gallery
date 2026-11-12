@@ -2,6 +2,43 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-12-f_52939062",
+      "date": "2026-11-12",
+      "pieces": [
+        {
+          "id": "f_52939062",
+          "title": "Marble-Like White & Black Good Size Alabaster Pendant Fixture 1920",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_529390621793822580091/13cfdf09-80b8-4e55-8656-06d14edcb1f1/IMG_0959_bg_processed.jpeg"
+        },
+        {
+          "id": "f_51659242",
+          "title": "Red and White Veined Art Deco Alabaster Pendant Chandelier",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_516592421788109086789/95cd214a-7c3a-4b5d-a8ad-e981b13ea1a5/IMG_7982_bg_processed.jpeg"
+        },
+        {
+          "id": "f_49711382",
+          "title": "Large D 19.7Ø\" Antique Alabaster Pendant Light with Rare Flameboyant Color Shade",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/large-d-197-antique-alabaster-pendant-light-with-rare-flameboyant-color-shade-for-sale/f_23413/f_497113821776451498647/f_49711382_1776451499224_bg_processed.jpg"
+        },
+        {
+          "id": "f_50862202",
+          "title": "Antique Four Layers Art Deco Design Alabaster Pendant Light circa 1920",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/stunning-antique-four-layers-art-deco-design-alabaster-pendant-light-circa-1920-for-sale/f_23413/f_508622021783186096963/f_50862202_1783186097454_bg_processed.jpg"
+        },
+        {
+          "id": "f_52817242",
+          "title": "Antique Alabaster Pendant Light with Fiery Multicolored Veining",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_528172421793215899737/428c8eff-29d9-401b-8bb5-3b8354637c7e/IMG_0427_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-12-f_52939062.jpg"
+    },
+    {
       "id": "2026-11-11-f_52018672",
       "date": "2026-11-11",
       "pieces": [

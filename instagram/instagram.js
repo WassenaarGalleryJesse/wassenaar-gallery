@@ -163,9 +163,10 @@ function fillSheet(post) {
   box.innerHTML = photo.html;
   $("[data-sheet-title]").textContent = `In this post · ${pieces.length} pieces`;
   $("[data-sheet-pieces]").innerHTML = pieces
-    .map((p) => {
+    .map((p, n) => {
       const href = p.available ? pieceHref(p) : similarHref(p.room);
-      const meta = [p.kind, p.date || p.subtitle].filter(Boolean).join(" · ");
+      // Numbered in the post's order, so "comment a number" on Instagram matches this list.
+      const meta = [n + 1, p.kind, p.date || p.subtitle].filter(Boolean).join(" · ");
       const price = p.available ? money(p) : "Sold · see similar pieces";
       return `<li><a class="ig-piece${p.available ? "" : " is-sold"}" href="${esc(href)}" data-sheet-piece="${esc(p.id)}">
         <span class="ig-piece__plate">${p.photo ? `<img src="${esc(imgUrl(p.photo, 240))}" alt="" loading="lazy" decoding="async">` : ""}</span>

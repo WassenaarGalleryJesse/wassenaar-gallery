@@ -106,7 +106,8 @@ Edit profile → Links). It repeats our posts as a three-column grid, newest fir
 
 - a post with **one piece** opens that piece on the homepage (`/#piece=f_…`), with its price and
   the link to 1stDibs;
-- a post with **several pieces** first shows them in a list with their prices, like 1stDibs does;
+- a post with **several pieces** first shows them in a list with their prices, like 1stDibs does,
+  numbered in the order they were given to the script (so match the post's own numbering);
 - a piece that has **sold** since the post is marked *Sold* and leads to similar pieces in the
   same category instead.
 
