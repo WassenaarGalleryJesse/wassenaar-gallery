@@ -2,6 +2,19 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-13-f_19030342",
+      "date": "2026-11-13",
+      "pieces": [
+        {
+          "id": "f_19030342",
+          "title": "Antique and Meaningful Dutch Arts & Crafts Bookcase with Learning Theme Sculptures",
+          "room": "furniture",
+          "photo": "https://a.1stdibscdn.com/antique-and-meaningful-dutch-arts-crafts-bookcase-w-learning-theme-sculptures-for-sale/1121189/f_190303421590423065188/19030342_master.jpg"
+        }
+      ],
+      "image": "posts/2026-11-13-f_19030342.jpg"
+    },
+    {
       "id": "2026-11-12-f_52939062",
       "date": "2026-11-12",
       "pieces": [
