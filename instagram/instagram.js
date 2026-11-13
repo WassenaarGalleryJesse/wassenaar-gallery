@@ -257,7 +257,7 @@ async function start() {
   bindEvents();
   $("[data-year]").textContent = new Date().getFullYear();
 
-  const data = await fetch("/instagram/posts.json")
+  const data = await fetch("/instagram/posts.json", { cache: "no-cache" })
     .then((r) => (r.ok ? r.json() : {}))
     .catch(() => ({}));
   POSTS = (data.posts || []).filter((p) => p?.id).sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
