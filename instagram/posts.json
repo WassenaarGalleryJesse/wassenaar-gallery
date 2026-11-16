@@ -2,6 +2,19 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-14-f_49916772",
+      "date": "2026-11-14",
+      "pieces": [
+        {
+          "id": "f_49916772",
+          "title": "Monumental Terracotta Figural Mantel Clock Attr to Louis Royer, Sign L.Royer f.",
+          "room": "clocks",
+          "photo": "https://a.1stdibscdn.com/monumental-terracotta-figural-mantel-clock-attr-to-louis-royer-sign-lroyer-f-for-sale/f_23413/f_499167721777581338987/f_49916772_1777581339861_bg_processed.jpg"
+        }
+      ],
+      "image": "posts/2026-11-14-f_49916772.jpg"
+    },
+    {
       "id": "2026-11-13-f_19030342",
       "date": "2026-11-13",
       "pieces": [
