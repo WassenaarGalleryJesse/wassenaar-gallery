@@ -2,6 +2,32 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-21-f_47968482",
+      "date": "2026-11-21",
+      "pieces": [
+        {
+          "id": "f_47968482",
+          "title": "Large & Stunningly Layered Art Deco Alabaster Pendant Light, Colors",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/large-stunningly-layered-art-deco-alabaster-pendant-light-amazing-colors-for-sale/f_23413/f_479684821765562926350/f_47968482_1765562927271_bg_processed.jpg"
+        },
+        {
+          "id": "f_50280012",
+          "title": "Larg Size, Design Alabaster Pendant Light Ceiling Fixture",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/top-quality-larg-size-timeless-design-alabaster-pendant-light-ceiling-fixture-for-sale/f_23413/f_502800121779907610696/f_50280012_1779907611272_bg_processed.jpg"
+        },
+        {
+          "id": "f_52864052",
+          "title": "Large Ø 19.5 Antique Art Deco Disc Shape White & Black Alabaster Pendant Light",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_528640521793439811146/3cc5f1b5-5d7c-4d59-acd5-dddcec22df49/IMG_0649_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-21-f_47968482.jpg",
+      "reel": true
+    },
+    {
       "id": "2026-11-19-f_52864052",
       "date": "2026-11-19",
       "pieces": [
