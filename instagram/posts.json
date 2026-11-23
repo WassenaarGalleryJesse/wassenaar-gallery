@@ -2,6 +2,34 @@
   "_note": "Posts on wassenaargallery.com/instagram, newest first by date. Add them with: node private/instagram-post.mjs add <photo> <1stDibs links or f_ ids>. pieces holds 1stDibs ids; the title, category and first photo are kept so the grid draws at once and a sold piece can still be named. image is optional: without it the tile shows the first piece's photo. link (optional) sends the tile somewhere else.",
   "posts": [
     {
+      "id": "2026-11-23-f_52762472",
+      "date": "2026-11-23",
+      "pieces": [
+        {
+          "id": "f_52762472",
+          "title": "Italian Murano Pink Glass Drops Chandelier with Cascading Waterfall Pendant Desi",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_527624721792942983546/4a71f46e-ef15-4fa6-9f8f-a1b732234b44/IMG_0283_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-23-f_52762472.jpg",
+      "reel": true
+    },
+    {
+      "id": "2026-11-22-f_53218562",
+      "date": "2026-11-22",
+      "pieces": [
+        {
+          "id": "f_53218562",
+          "title": "Gothic Revival Bronze Chandelier with Three Winged Gargoyles",
+          "room": "lighting",
+          "photo": "https://a.1stdibscdn.com/archivesE/upload/f_23413/f_532185621795118632623/5470353f-a48d-4283-b523-9e055869bc0d/IMG_1811_bg_processed.jpeg"
+        }
+      ],
+      "image": "posts/2026-11-22-f_53218562.jpg",
+      "reel": true
+    },
+    {
       "id": "2026-11-21-f_47968482",
       "date": "2026-11-21",
       "pieces": [
